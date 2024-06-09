@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '9206ad5d-023f-412a-baae-a078c274337d', url: 'https://github.com/arijit0405/weather_data.git']])
+            }
+        }
+       stage('Install Dependencies') {
+    steps {
+        bat 'py -m pip install requests'
+    }
+}
+
+        stage('Build') {
+            steps {
+                // Running the Python script
+                bat 'py weather_data.py'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "The job has been tested"
+            }
+        }
+    }
+}
