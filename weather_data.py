@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 user_api = os.getenv("api_key")
-location = input("Please Enter City Name: ")
+location = "Kolkata"
 
 complete_api_link = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + user_api
 api_link = requests.get(complete_api_link)
